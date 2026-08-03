@@ -7,7 +7,7 @@ endpoint simulation, and detection engineering. After installation and deploymen
 
 ### 1. Edit /etc/netplan/00-installer-config.yaml file to set a static IP Address to the Ubuntu VM
    
-This is important in order to ensure reliable network connections and consistency
+This will be especially important for when I configure Active Directory
 
 ### 2. Follow installation steps according to https://documentation.wazuh.com/current/quickstart.html
 
@@ -24,3 +24,7 @@ For the sake of my homelab, I am downloading the Wazuh server, indexer, and dash
 After successful installation, I was able to navigate to the web interface via https://\<wazuh-dashboard-ip>\:443 and the credentials supplied during installation
 
 <img width="3416" height="2070" alt="image" src="https://github.com/user-attachments/assets/7fe07286-7a14-46ad-9c98-52c879228365" />
+
+### Next steps
+
+My next step will be to deploy different endpoint virtual machines to my proxmox setup, to simulate different endpoints in my environment.
