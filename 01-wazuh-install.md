@@ -13,7 +13,7 @@ This will be especially important for when I configure Active Directory
 
 One issue I encountered was not being able to paste commands inside the virtual machine. Resolution was to SSH into the VM from my host machine and paste installation commands that way.
 
-For the sake of my homelab, I am downloading the Wazuh server, indexer, and dashboard all on one host. Their functions are as follows:
+For the sake of my homelab, I downloaded the Wazuh server, indexer, and dashboard all on one host. Their functions are as follows:
 
 **Wazuh Server:** Processes security data from endpoints, applies detection rules, and generates security alerts.    
 **Wazuh Dashboard:** Provides a web-based interface for viewing alerts, logs, dashboards, and security analysis.    
