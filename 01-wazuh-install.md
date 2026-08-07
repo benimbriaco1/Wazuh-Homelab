@@ -1,4 +1,4 @@
-## Objective: Deploy Wazuh Server onto Ubuntu Server
+## Objective: Deploy Wazuh Server onto Ubuntu VM
 
 Proxmox VE was deployed as the foundation of my cybersecurity homelab environment. The goal of this hypervisor is to host multiple virtual machines used for security monitoring, 
 endpoint simulation, and detection engineering. After installation and deployment of an Ubuntu 26.04 LTS virtual machine, the next step is to install Wazuh Server.
