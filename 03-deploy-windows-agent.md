@@ -4,4 +4,7 @@ A Windows 11 endpoint in my lab can help represent a standard workstation in an 
 
 ### Installation Steps:
 
-### 1. Download ISO file and upload to proxmox
+### 1. Download ISO file and upload to Proxmox
+This also requires the use of the VirtIO driver 
+
+### 2. 
