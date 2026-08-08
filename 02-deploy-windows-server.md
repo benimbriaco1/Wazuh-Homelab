@@ -1,4 +1,4 @@
-# Objective: deploy windows server 2025 virtual machine
+# Objective: Deploy Windows Server 2025 virtual machine
 
 For my homelab setup, I plan to add a Windows Server to act as a domain controller. That way I can detect different AD attacks (Kerberoasting, DCSync, Pass-the-hash, etc), but also have a means of managing my endpoints and identities
 
