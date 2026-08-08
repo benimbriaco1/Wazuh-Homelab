@@ -19,3 +19,7 @@ Just as I gave the Ubuntu VM as static IP address, I gave the Windows Server a s
 ### 2. Renaming Machine
 For convenience, I renamed the machine to make it more readable
 
+### 3. Install AD DS and DNS roles
+Installed Active Directory Domain Services (AD DS) and Domain Name System (DNS) in Server Manager Dashboard, core components of Active Directory and my homelab setup
+
+### 4. Promote server to domain controller
