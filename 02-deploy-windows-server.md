@@ -23,3 +23,5 @@ For convenience, I renamed the machine to make it more readable
 Installed Active Directory Domain Services (AD DS) and Domain Name System (DNS) in Server Manager Dashboard, core components of Active Directory and my homelab setup
 
 ### 4. Promote server to domain controller
+I created a new forest set as: homelab.local with NETBIOS as HOMELAB. After promoting, login screen looks like:
+<img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/c0c385f5-d301-4fad-9510-661fee3fcb24" />
