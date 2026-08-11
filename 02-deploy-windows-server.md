@@ -26,5 +26,5 @@ Installed Active Directory Domain Services (AD DS) and Domain Name System (DNS) 
 I created a new forest set as: homelab.local with NETBIOS as HOMELAB. After promoting, login screen looks like:
 <img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/c0c385f5-d301-4fad-9510-661fee3fcb24" />
 
-### Next Steps
+### 📋 Next Steps
 My next step will be to deploy a Windows 11 endpoint to proxmox and join it to my AD domain. 
