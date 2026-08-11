@@ -25,6 +25,6 @@ After successful installation, I was able to navigate to the web interface via h
 
 <img width="3416" height="2070" alt="image" src="https://github.com/user-attachments/assets/7fe07286-7a14-46ad-9c98-52c879228365" />
 
-### Next steps
+### 📋 Next steps
 
 My next step will be to deploy different endpoint virtual machines to my proxmox setup, to simulate different endpoints in my environment.
