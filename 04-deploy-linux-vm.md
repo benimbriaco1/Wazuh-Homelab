@@ -21,6 +21,6 @@ This proved to be even more troublesome that joining the Windows 11 Client to th
 Now I can see the Linux Client in Active Directory Users and Computers tool on the DC:
 <img width="1474" height="692" alt="image" src="https://github.com/user-attachments/assets/c705473b-a221-4ee9-85f7-21ea824c94ae" />
 
-### Next Steps
+### 📋 Next Steps
 The next step is one of the most important ones - installing the wazuh agent on all of my virtual machines to complete my setup.
 
