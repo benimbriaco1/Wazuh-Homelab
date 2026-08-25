@@ -1,6 +1,6 @@
 # Objective: Deploy Wazuh Agent to all devices in homelab
 
-Agents are small pieces of software installed on endpoints which can collect and forward security data to a central SIEM for monitoring and analysis. In order for my Wazuh server to have appropriate visibility into the health and security of my endpoints, I need to install the Wazuh agent on each host.
+Agents are small pieces of software installed on endpoints which can collect and forward security data to a SIEM or central location for monitoring and analysis. In order for my Wazuh server to have appropriate visibility into the health and security of my endpoints, I need to install the Wazuh agent on each host.
 
 ### Installation steps:
 
