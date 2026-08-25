@@ -1,6 +1,6 @@
 # Objective: Deploy Wazuh Agent to all devices in homelab
 
-With an agent installed on each endpoint, I can start sending telemetry to my Wazuh server and building out threat detections
+Agents are small pieces of software installed on endpoints which can collect and forward security data to a central SIEM for monitoring and analysis. In order for my Wazuh server to have appropriate visibility into the health and security of my endpoints, I need to install the Wazuh agent on each host.
 
 ### Installation steps:
 
@@ -8,3 +8,6 @@ With an agent installed on each endpoint, I can start sending telemetry to my Wa
 
 ❌ blocker: pasting into windows virtual machine   
 ✅ solution: similar to how I used ssh to paste commands into my Linux VMs, I used RDP to remote into my Windows virtual machines from my host machine
+
+This is what it looks like to add the wazuh agent
+<img width="2230" height="336" alt="image" src="https://github.com/user-attachments/assets/1c9ecd5b-c87a-47c3-9710-3d434445c326" />
