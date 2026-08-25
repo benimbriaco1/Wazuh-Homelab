@@ -4,6 +4,7 @@ With an agent installed on each endpoint, I can start sending telemetry to my Wa
 
 ### Installation steps:
 
-### 1. Install agent onto Windows Server 2025 VM
+### 1. Install agent onto Windows Server 2025 and Windows 11 Virtual Machines
 
-Current blocker: pasting into windows virtual machine
+❌ blocker: pasting into windows virtual machine
+✅ solution: similar to how I used ssh to paste commands into my Linux VMs, I used RDP to remote into my Windows virtual machines from my host machine
