@@ -16,3 +16,10 @@ After adding the agents to the Windows host, the agents agents are visible from 
 <img width="2648" height="1374" alt="image" src="https://github.com/user-attachments/assets/1aefeeba-9934-43f3-bbf5-ae1846073b8d" />
 
 ### 2. Install agent onto Linux VM
+For the Windows hosts, all that was needed  to deploy the Wazuh agent was to run 2 commands in an admin Powershell window. For the linux client, I had to follow a few more steps as outlined in: https://documentation.wazuh.com/current/installation-guide/wazuh-agent/wazuh-agent-package-linux.html 
+
+<img width="2636" height="1266" alt="image" src="https://github.com/user-attachments/assets/4cd08da2-4757-483d-ac8d-97505cab643b" />
+
+### 📋 Next Steps
+
+Now that all of our agents have been to deployed to all our hosts, the next step is to start writing detections
