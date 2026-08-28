@@ -22,4 +22,4 @@ For the Windows hosts, all that was needed  to deploy the Wazuh agent was to run
 
 ### 📋 Next Steps
 
-Now that all of our agents have been to deployed to all our hosts, the next step is to start writing detections
+The last step before writing detections is to deploy an attacker Kali Linux VM which we can use to attack our other VMs
