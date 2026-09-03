@@ -11,7 +11,7 @@ This computer does none of the hosting. It is the computer from which I log into
 This is a repurposed old HP Envy laptop. Windows OS has been wiped from it and replaced with Proxmox as a type 1 hypervisor. All the virtual machines created in this lab are being hosted here, using the physical hardware of the Proxmox server. 
 
 ### 🔴 Ubuntu 26.04 Server VM
-This is a console based virtual machine which I am using to run the Wazuh Server, Dashboard, and Indexer. See [01-wazuh-install.md](01-wazuh-install.md) for definitions of these Wazuh features. 
+This is a CLI based virtual machine which I am using to run the Wazuh Server, Dashboard, and Indexer. See [01-wazuh-install.md](01-wazuh-install.md) for definitions of these Wazuh features. 
 )
 
 ### 🔴 Ubuntu 26.04 Desktop VM
