@@ -17,8 +17,6 @@ For the purposes of my project, I didn't use the millions of passwords in rockyo
 Looking in Wazuh Dashboard > Threat Hunting, we see that these SSH failures were logged:
 <img width="3436" height="1760" alt="image" src="https://github.com/user-attachments/assets/f860beba-e5bd-461d-b6a0-e76c21ad4fc7" />
 
-Even though Wazuh comes equipped with built in alerts as visible in the screenshot above, I wanted to make my own custom detection rule. Local rules are added in /var/ossec/etc/rules/local_rules.xml
-
 
 
 
