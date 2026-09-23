@@ -20,13 +20,26 @@ Looking in Wazuh Dashboard > Threat Intelligence > Threat Hunting, we see that t
 And looking in Wazuh Dashboard > Explore > Discover, we can see the event logs:
 <img width="3386" height="1666" alt="image" src="https://github.com/user-attachments/assets/aaa13c8f-4668-4b91-a543-f74766b790ef" />
 
-The custom rule I created to catch this activity is
+To add my own detection rule for SSH brute force attacks, I added the following code to /var/ossec/etc/rules/local_rules.xml:
 
+```
+<group name="local,sshd, authentication_failed">
+  <rule id="100002" level="10" frequency="10" timeframe="60">
+    <if_matched_sid>5760</if_matched_sid>
+    <same_srcip />
+    <description>Possible SSH brute force attack from IP: $(srcip)</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+  </rule>
+</group>
+```
+This rule is set to fire when 10 SSH authentication failures occur from the same IP address within 60 seconds. It is built off of event's matching rule id 5760 (Wazuh's built in SSH authentication failure rule), and is mapped to Credential Access technique T1110: brute force
 
-
-include detection name, mitre mapping, etc
+Now when we launch the same attack from the Kali box, I can see my alert fire
 
 ### Analyst Investigation
+
 
 ### False Positives
 
