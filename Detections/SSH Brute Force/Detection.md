@@ -14,10 +14,13 @@ For the purposes of my project, I didn't use the millions of passwords in rockyo
 <img width="1772" height="266" alt="image" src="https://github.com/user-attachments/assets/6cd84cd7-5a00-43bc-8da0-b08cb53c90c4" />
 
 ## Detection 
-Looking in Wazuh Dashboard > Threat Hunting, we see that these SSH failures were logged:
+Looking in Wazuh Dashboard > Threat Intelligence > Threat Hunting, we see that these SSH failures were logged:
 <img width="3436" height="1760" alt="image" src="https://github.com/user-attachments/assets/f860beba-e5bd-461d-b6a0-e76c21ad4fc7" />
 
+And looking in Wazuh Dashboard > Explore > Discover, we can see the event logs:
+<img width="3386" height="1666" alt="image" src="https://github.com/user-attachments/assets/aaa13c8f-4668-4b91-a543-f74766b790ef" />
 
+The custom rule I created to catch this activity is
 
 
 
