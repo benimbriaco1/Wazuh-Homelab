@@ -24,22 +24,28 @@ To add my own detection rule for SSH brute force attacks, I added the following 
 
 ```
 <group name="local,sshd, authentication_failed">
-  <rule id="100002" level="10" frequency="10" timeframe="60">
+  <rule id="5763" level="10" frequency="10" timeframe="60" overwrite="yes">
     <if_matched_sid>5760</if_matched_sid>
     <same_srcip />
-    <description>Possible SSH brute force attack from IP: $(srcip)</description>
+    <description>Ben - Possible SSH brute force attack from IP: $(srcip)</description>
     <mitre>
       <id>T1110</id>
     </mitre>
   </rule>
 </group>
 ```
-This rule is set to fire when 10 SSH authentication failures occur from the same IP address within 60 seconds. It is built off of event's matching rule id 5760 (Wazuh's built in SSH authentication failure rule), and is mapped to Credential Access technique T1110: brute force
+This rule is set to fire when 10 SSH authentication failures occur from the same IP address within 60 seconds. It is built off of event's matching rule id 5760 (Wazuh's built in SSH authentication failure rule), and is mapped to Credential Access technique T1110: brute force. It overwrites the 5763 built in SSH brute force detection, with our own implementation
 
-Now when we launch the same attack from the Kali box, I can see my alert fire
+Now when we launch the same attack from the Kali box, I can see my alert fire:
+<img width="2164" height="450" alt="image" src="https://github.com/user-attachments/assets/352715af-3de4-47ce-b829-63dd87e716f4" />
+<img width="3448" height="1344" alt="image" src="https://github.com/user-attachments/assets/ce4f9968-7e99-4268-973e-3c07d9ee856d" />
+
+
 
 ### Analyst Investigation
 
+If analyst an analyst were to receive this alert, they should triage by determining if they recognize the source IP the attempts came from. If they don't, they should confirm no attempts were successful and block the source IP from further inbound connections. If any authentication attempts were successful, the victim's device should be immediately disconnected from the internet and isolated for further investigation and containment.
 
 ### False Positives
 
+Potential false positives that could cause an SSH brute force alert to fire are IT personnel running remote access scripts for monitoring, patching, etc
