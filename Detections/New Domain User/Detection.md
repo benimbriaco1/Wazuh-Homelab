@@ -17,3 +17,8 @@ Wazuh now shows telemetry regarding a 4720 Windows Event ID, which is "user acco
 
 To add my own detection rule, I appended this onto the /var/ossec/etc/rules/local_rules.xml file
 
+## Analyst Investigation
+
+## False Positives
+
+## Limitations
