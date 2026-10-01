@@ -42,14 +42,14 @@ Now when I launch the same attack from the Kali box, I can see my alert fire:
 
 
 
-### Analyst Investigation
+## Analyst Investigation
 
 If an analyst were to receive this alert, they should triage by determining if they recognize the source IP the attempts came from. If they don't, they should confirm no attempts were successful and block the source IP from further inbound connections. If any authentication attempts were successful, the victim's device should be immediately isolated from the network, credentials should be reset, and further investigation should be conducted (looking for persistence mechanisms, AV scan, etc)
 
-### False Positives
+## False Positives
 
 Authorized pentests, scripts with expired credentials, different users behind one NAT IP
 
-### Limitations
+## Limitations
 
 An important limitation of this detection to note is that it will not catch SSH authentication attempts that are spread out over a longer time period, like 24 hours. This could be implemented via a similar rule with adjusted thresholds
