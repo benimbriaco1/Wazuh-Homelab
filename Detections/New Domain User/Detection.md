@@ -9,9 +9,11 @@ To demonstrate an attacker using this method to establish persistence, I opened 
 Now there is another user that can logon to the Windows machine.  
 <img width="2322" height="1114" alt="image" src="https://github.com/user-attachments/assets/572a93ff-b756-4d97-8b5c-69cbcc94e394" />
 
+## Detection
+
 Wazuh now shows telemetry regarding a 4720 Windows Event ID, which is "user account was created". The data.win.eventdata.targetUserName shows the "hacker" username, highlighted in yellow
 
 <img width="3394" height="1156" alt="image" src="https://github.com/user-attachments/assets/6fd38c37-96a3-4131-a5e7-3c04bf7d7134" />
 
-
+To add my own detection rule, I appended this onto the /var/ossec/etc/rules/local_rules.xml file
 
