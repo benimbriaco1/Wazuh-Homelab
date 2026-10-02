@@ -15,7 +15,24 @@ Wazuh now shows telemetry regarding a 4720 Windows Event ID, which is "user acco
 
 <img width="3394" height="1156" alt="image" src="https://github.com/user-attachments/assets/6fd38c37-96a3-4131-a5e7-3c04bf7d7134" />
 
-To add my own detection rule, I appended this onto the /var/ossec/etc/rules/local_rules.xml file
+To add my own detection rule, I appended this logic onto the /var/ossec/etc/rules/local_rules.xml file:
+
+```
+<group name="windows, windows_security, adduser">
+  <rule id="100101" level="8">
+    <field name="data.win.system.eventID">^4720$</field>
+    <description>Ben - New user created: $(data.win.eventdata.targetUserName) by: $(data.win.eventdata.subjectUserName)</description>
+    <mitre>
+      <id>T1136</id>
+    </mitre>
+  </rule>
+</group>
+```
+It searches for Windows Event IDs of 4720, and creates a description of what happened. This attack is mapped to T1136: Create Account. Specifically, sub-technique T1136.001: Local Account
+
+Now when an user is added on the Windows 11 host:
+<img width="912" height="428" alt="image" src="https://github.com/user-attachments/assets/6b5c5351-0390-4c32-a834-1c357c8e317a" />
+
 
 ## Analyst Investigation
 
