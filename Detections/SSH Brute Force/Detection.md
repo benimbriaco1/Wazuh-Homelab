@@ -29,12 +29,12 @@ To add my own detection rule for SSH brute force attacks, I added the following 
     <same_srcip />
     <description>Ben - Possible SSH brute force attack from IP: $(srcip)</description>
     <mitre>
-      <id>T1110</id>
+      <id>T1110.001</id>
     </mitre>
   </rule>
 </group>
 ```
-This rule is set to fire when 10 SSH authentication failures occur from the same IP address within 60 seconds. It is built off of event's matching rule id 5760 (Wazuh's built in SSH authentication failure rule), and is mapped to Credential Access technique T1110: brute force. It overwrites the 5763 built in SSH brute force detection, with our own implementation. Without overwriting 5763, only the built in rule was firing and not my custom detection. The overwriting is done via the "overwrite = yes" flag. 
+This rule is set to fire when 10 SSH authentication failures occur from the same IP address within 60 seconds. It is built off of event's matching rule id 5760 (Wazuh's built in SSH authentication failure rule), and is mapped to Credential Access technique T1110.001: Brute force: password guessing. It overwrites the 5763 built in SSH brute force detection, with our own implementation. Without overwriting 5763, only the built in rule was firing and not my custom detection. The overwriting is done via the "overwrite = yes" flag. 
 
 Now when I launch the same attack from the Kali box, I can see my alert fire:
 <img width="2164" height="450" alt="image" src="https://github.com/user-attachments/assets/352715af-3de4-47ce-b829-63dd87e716f4" />
