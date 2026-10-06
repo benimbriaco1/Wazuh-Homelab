@@ -19,11 +19,12 @@ To add my own detection rule, I appended this logic onto the /var/ossec/etc/rule
 
 ```
 <group name="windows, windows_security, adduser">
-  <rule id="100101" level="8">
+  <rule id="60109" level="8" overwrite="yes">
+    <if_sid>60103</if_sid>
     <field name="win.system.eventID">^4720$</field>
     <description>Ben - New user created: $(win.eventdata.targetUserName) by: $(win.eventdata.subjectUserName)</description>
     <mitre>
-      <id>T1136</id>
+      <id>T1136.001</id>
     </mitre>
   </rule>
 </group>
@@ -39,7 +40,7 @@ Something important I learned when creating this detection: in Wazuh, when you l
 
 ## Analyst Investigation
 
-If an analyst were to receive this alert, they should first identify whether the created user is expected, and/or if it was created by an expected user (ex: IT admin). If the new user created seems suspicious, this should be escalated and the account should be promptly contained and deleted, with commands like `Remove-LocalUser <username>`. The creating account should also be investigated to ensure it has not been compromised and used to establish persistence for the attacker. 
+If an analyst were to receive this alert, they should first identify whether the created user is expected, and/or if it was created by an expected user (ex: IT admin). If the new user created seems suspicious, this should be escalated and the account should be promptly disabled and deleted (after evidence is gathered), with commands like `Remove-LocalUser <username>`. The creating account should also be investigated to ensure it has not been compromised and used to establish persistence for the attacker. 
 
 ## False Positives
 
@@ -47,4 +48,4 @@ False positives include new hire onboarding and creation of legitimate accounts 
 
 ## Limitations
 
-A limitation of this detection is that it could potentially generate a lot of false positives, especially if it is used in an organization with lots of employees. In addition, it could be further improved by adding correlation of a privileged group addition.
+A limitation of this detection is that it lacks correlation of following events, such as a privileged group addition. This could be implemented via if_sid =  on a privileged group detection
