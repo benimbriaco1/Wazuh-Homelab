@@ -1,6 +1,6 @@
 ## Attack Scenario
 
-After establishing initial access, attacker's may create a new local user on a compromised host with commands like `New-LocalUser <Username>`. A new local user can serve as a persistence mechanism, giving attacker's renewed access to a system via credentials they set themselves. A common flow is something like Initial Access > Privilege Escalation > New Local User Created > Persistence Established
+After establishing initial access, attackers may create a new local user on a compromised host with commands like `New-LocalUser <Username>`. A new local user can serve as a persistence mechanism, giving attackers renewed access to a system via credentials they set themselves. A common flow is something like Initial Access > Privilege Escalation > New Local User Created > Persistence Established
 ## Simulated Attack
 
 To demonstrate an attacker using this method to establish persistence, I opened an administrative PowerShell window on the Windows 11 Virtual Machine. This is assuming an attacker has established initial access and escalated their privileges and now has access to an elevated shell. Adding a new local user is as simple as:  
@@ -31,7 +31,7 @@ To add my own detection rule, I appended this logic onto the /var/ossec/etc/rule
 ```
 It searches for Windows Event IDs of 4720, and creates a description of what happened. This attack is mapped to T1136: Create Account. Specifically, sub-technique T1136.001: Local Account
 
-Now when an user is added on the Windows 11 host:
+Now when a user is added on the Windows 11 host:
 <img width="912" height="428" alt="image" src="https://github.com/user-attachments/assets/6b5c5351-0390-4c32-a834-1c357c8e317a" />
 The rule catches this activity and notes in the description the acting user:
 <img width="3444" height="1260" alt="image" src="https://github.com/user-attachments/assets/aedf1cb3-8f87-4016-b4f9-5fa3459c2d20" />
@@ -48,4 +48,4 @@ False positives include new hire onboarding and creation of legitimate accounts 
 
 ## Limitations
 
-A limitation of this detection is that it lacks correlation of following events, such as a privileged group addition. This could be implemented via if_sid =  on a privileged group detection
+A limitation of this detection is that it lacks correlation of any following events, such as a privileged group addition for privilege escalation and persistence. This could be implemented via if_sid =  60109 on a privileged group detection
