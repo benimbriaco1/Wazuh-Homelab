@@ -20,8 +20,8 @@ To add my own detection rule, I appended this logic onto the /var/ossec/etc/rule
 ```
 <group name="windows, windows_security, adduser">
   <rule id="100101" level="8">
-    <field name="data.win.system.eventID">^4720$</field>
-    <description>Ben - New user created: $(data.win.eventdata.targetUserName) by: $(data.win.eventdata.subjectUserName)</description>
+    <field name="win.system.eventID">^4720$</field>
+    <description>Ben - New user created: $(win.eventdata.targetUserName) by: $(win.eventdata.subjectUserName)</description>
     <mitre>
       <id>T1136</id>
     </mitre>
@@ -32,10 +32,19 @@ It searches for Windows Event IDs of 4720, and creates a description of what hap
 
 Now when an user is added on the Windows 11 host:
 <img width="912" height="428" alt="image" src="https://github.com/user-attachments/assets/6b5c5351-0390-4c32-a834-1c357c8e317a" />
+The rule catches this activity and notes in the description the acting user:
+<img width="3444" height="1260" alt="image" src="https://github.com/user-attachments/assets/aedf1cb3-8f87-4016-b4f9-5fa3459c2d20" />
 
+Something important I learned when creating this detection: in Wazuh, when you look at alert details some of them have the data. prefix before them. ex: data.win.eventdata.targetUserName. However, when you want to filter off this field in the rule, you omit the "data." prefix.
 
 ## Analyst Investigation
 
+If an analyst were to receive this alert, they should first identify whether the created user is expected, and/or if it was created by an expected user (ex: IT admin). If the new user created seems suspicious, this should be escalated and the account should be promptly contained and deleted, with commands like `Remove-LocalUser <username>`. The creating account should also be investigated to ensure it has not been compromised and used to establish persistence for the attacker. 
+
 ## False Positives
 
+False positives include new hire onboarding and creation of legitimate accounts for testing/experimentation
+
 ## Limitations
+
+A limitation of this detection is that it could potentially generate a lot of false positives, especially if it is used in an organization with lots of employees. In addition, it could be further improved by adding correlation of a privileged group addition.
