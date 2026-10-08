@@ -1,7 +1,7 @@
-## Attack Scenario
+## Attack Description
 
 After establishing initial access, attackers may create a new local user on a compromised host with commands like `New-LocalUser <Username>`. A new local user can serve as a persistence mechanism, giving attackers renewed access to a system via credentials they set themselves. A common flow is something like Initial Access > Privilege Escalation > New Local User Created > Persistence Established
-## Simulated Attack
+## Attack Scenario 
 
 To demonstrate an attacker using this method to establish persistence, I opened an administrative PowerShell window on the Windows 11 Virtual Machine. This is assuming an attacker has established initial access and escalated their privileges and now has access to an elevated shell. Adding a new local user is as simple as:  
 <img width="646" height="332" alt="image" src="https://github.com/user-attachments/assets/c43556ee-6207-4bcb-b9a1-d16b683896e8" />
