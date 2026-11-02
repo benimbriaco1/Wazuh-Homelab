@@ -18,11 +18,14 @@ Then I used the `setspn` command to register the above accounts to be responsibl
 What this does is use -A to add a new SPN, followed by the SPN itself in ServiceClass/Hostname:Port format. In this case the SPN is the MSSQLSvc service, running on Windows Server 2025 host, over port 1433 which is what MSSQL uses by default. Lastly it includes the account for which to configure the SPN. Then I repeated this process with slight variation for the other 2 test service accounts. This image shows the new SPNs created in my domain:
 <img width="970" height="250" alt="image" src="https://github.com/user-attachments/assets/5603ce1a-a1d5-4d69-93c6-231402cf7596" />
   
-Then I created a low privilege local user to prove this attack can be carried out with limited permissions. I did this via GUI but it can be done via CLI
+Then I created a low privilege local user to prove this attack can be carried out with limited permissions. I did this via GUI but it can be done via CLI.        
 <img width="872" height="58" alt="image" src="https://github.com/user-attachments/assets/41b0a46b-addb-40cb-ad95-bcc2b89000f8" />
 
 Now on the attacking box, kali linux, I can see these same SPNs with the credentials of the local user created earlier
 <img width="2056" height="580" alt="image" src="https://github.com/user-attachments/assets/14078117-7ccc-4952-98bd-77528a1e1be8" />
+
+In order to simulate requesting tickets from these accounts, I used impacket-GetUserSPNs with the -request parameter to request tickets from all service accounts in the target AD domain. The main error I was encountering during this process was an unsupported encryption type error being thrown, which I fixed by specifying -no-rc4, so that impacket wouldn't try to request a service ticket encrypted with rc4. Windows was likely rejecting that request because rc4 has been deemd outdated and insecure. 
+<img width="2556" height="1542" alt="image" src="https://github.com/user-attachments/assets/e71954c6-9b16-468e-823e-da3e0467bcd5" />
 
 
 
