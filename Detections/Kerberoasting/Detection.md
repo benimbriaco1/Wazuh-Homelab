@@ -25,10 +25,11 @@ Now on the attacking box, kali linux, I can see these same SPNs with the credent
 <img width="2056" height="580" alt="image" src="https://github.com/user-attachments/assets/14078117-7ccc-4952-98bd-77528a1e1be8" />
 
 In order to simulate requesting tickets from these accounts, I used impacket-GetUserSPNs with the -request parameter to request tickets from all service accounts in the target AD domain. The main error I was encountering during this process was an unsupported encryption type error being thrown, which I fixed by specifying -no-rc4, so that impacket wouldn't try to request a service ticket encrypted with rc4. Windows was likely rejecting that request because rc4 has been deemd outdated and insecure. 
-<img width="2556" height="1542" alt="image" src="https://github.com/user-attachments/assets/e71954c6-9b16-468e-823e-da3e0467bcd5" />
+<img width="2556" height="1542" alt="image" src="https://github.com/user-attachments/assets/e71954c6-9b16-468e-823e-da3e0467bcd5" />   
 
-
-
+And because these service tickets are encrypted with the password of the service account, after obtaining the ticket an attacker can then try to obtain the plaintext passwords. To demonstrate this, I performed a dictionary attack with hashcat using a text file containing the password for the service accounts via `hashcat -m 19700 -a 0 /hash1.txt /test_password_list.txt` where hash1.txt was the output of impacket-GetUSerSPNs -request, and test_password_list was a text file containing the correct password.  
+<img width="1754" height="1096" alt="image" src="https://github.com/user-attachments/assets/16f2fecc-f36e-45d6-9732-18eed774b0ea" />  
+In a normal scenario, the attacker wouldn't know the password and would use a utility like hashcat alongside a password list containing potentially millions of entries.
 
 ## Detection
 
