@@ -32,6 +32,11 @@ And because these service tickets are encrypted with the password of the service
 In a normal scenario, the attacker wouldn't know the password and would use a utility like hashcat alongside a password list containing potentially millions of entries.
 
 ## Detection
+Testing caused multiple logs with Event ID 4769 - A Kerberos service ticket was requested - to populate.   
+<img width="2092" height="1612" alt="image" src="https://github.com/user-attachments/assets/8bca3ea0-bc90-41aa-8488-d6bf71717f4b" />
+
+Generating an alert just based off 4769 events is too loose and would cause false positives to trigger. To more accurately catch the activity simulated in the kerberoasting attack previously, I made a detection rule that fires on multiple 4769 events coming from the same IP address shortly following NTLM authentication:
+
 
 ## Analyst Investigation
 
