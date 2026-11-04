@@ -5,8 +5,8 @@ On Linux systems, there is a daemon known as cron which is used to run periodic 
 `/var/spool/cron/crontabs/<username>`    - contains user-specific crontab file (managed via crontab -e)  
 `/etc/crontab`                           - contains system-wide crontabs, running under specific user accounts  
 `/etc/cron.d/`                           - similar to /etc/crontab, this is a directory where can you can create separate system-wide config files which run under a certain user  
-`/etc/cron.hourly/`                      - system-wide cronjobs executed hourly
-`/etc/cron.daily/`                       - system-wide cronjobs executed daily (there is also weekly and monthly)
+`/etc/cron.hourly/`                      - system-wide cronjobs executed hourly  
+`/etc/cron.daily/`                       - system-wide cronjobs executed daily (there is also weekly and monthly)  
 
 ## Simulated Attack
 
