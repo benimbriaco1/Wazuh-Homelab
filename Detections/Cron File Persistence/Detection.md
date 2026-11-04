@@ -9,6 +9,7 @@ On Linux systems, there is a daemon known as cron which is used to run periodic 
 `/etc/cron.daily/`                       - system-wide cronjobs executed daily (there is also weekly and monthly)  
 
 ## Simulated Attack
+idea: sceipt that adds ssh key to auhtorized keys
 
 ## Detection
 
