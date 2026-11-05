@@ -24,7 +24,7 @@ Then I created a low privilege local user to prove this attack can be carried ou
 Now on the attacking box, kali linux, I can see these same SPNs with the credentials of the local user created earlier
 <img width="2056" height="580" alt="image" src="https://github.com/user-attachments/assets/14078117-7ccc-4952-98bd-77528a1e1be8" />
 
-In order to simulate requesting tickets from these accounts, I used impacket-GetUserSPNs with the -request parameter to request tickets from all service accounts in the target AD domain. The main error I was encountering during this process was an unsupported encryption type error being thrown, which I fixed by specifying -no-rc4, so that impacket wouldn't try to request a service ticket encrypted with rc4. Windows was likely rejecting that request because rc4 has been deemd outdated and insecure. 
+In order to simulate requesting tickets from these accounts, I used impacket-GetUserSPNs with the -request parameter to request tickets from all service accounts in the target AD domain. The main error I was encountering during this process was an unsupported encryption type error being thrown, which I fixed by specifying -no-rc4, so that impacket wouldn't try to request a service ticket encrypted with rc4. Windows was likely rejecting that request because rc4 has been deemed outdated and insecure. However, it is very important to note that a lot of kerberoasting attacks happen with the attacker requesting rc4 tickets  
 <img width="2556" height="1542" alt="image" src="https://github.com/user-attachments/assets/e71954c6-9b16-468e-823e-da3e0467bcd5" />   
 
 And because these service tickets are encrypted with the password of the service account, after obtaining the ticket an attacker can then try to obtain the plaintext passwords. To demonstrate this, I performed a dictionary attack with hashcat using a text file containing the password for the service accounts via `hashcat -m 19700 -a 0 /hash1.txt /test_password_list.txt` where hash1.txt was the output of impacket-GetUSerSPNs -request, and test_password_list was a text file containing the correct password.  
@@ -78,7 +78,7 @@ If an analyst were to see this alert (rule ID 100004, 100003 is not suspicious o
 
 ## False Positives  
 
-Potential false positives include authorized admins/tools enumerating services or high privileged users who have access to many services within an organization\
+Potential false positives include authorized admins/tools enumerating services or high privileged users who have access to many services within an organization
 
 ## Limitations  
 The thresholds on this rule are tailored to my environment. In a more realistic enterprise environment, the thresholds would be adjusted to something more along the lines of 25 requests in 5 minutes for instance. A different method of detecting kerberoasting attacks is looking for 4769 event IDs where the user tries to request legacy encryption methods like RC4 which are easier to crack 
