@@ -33,11 +33,52 @@ In a normal scenario, the attacker wouldn't know the password and would use a ut
 
 ## Detection
 Testing caused multiple logs with Event ID 4769 - A Kerberos service ticket was requested - to populate.   
-<img width="2448" height="1832" alt="image" src="https://github.com/user-attachments/assets/4f245672-3d21-450b-adaa-c052832b7f15" />
+<img width="2448" height="1832" alt="image" src="https://github.com/user-attachments/assets/4f245672-3d21-450b-adaa-c052832b7f15" />   
 
-Generating an alert just based off 4769 events is too loose and would cause false positives to trigger. To more accurately catch the activity simulated in the kerberoasting attack previously, I made a detection rule that fires on multiple 4769 events coming from the same IP address shortly following NTLM authentication:
+Detecting this activity is a multiple step effort in Wazuh:  
+1. Edit /var/ossec/ruleset/rules/0580-win-security_rules.xml rule ID 60106 to not include event ID 4769
+Explanation: This rule is the generic Wazuh built in rule for Windows Logon Success, but by default it included event ID 4769. For my detection to work, I needed to stop this rule from getting those event IDs.
 
+2. Add this detection to /var/ossec/etc/rules/local_rules.xml:  
 
-## Analyst Investigation
+```
+<group name="windows, windows_security, kerberos">
+  <rule id="100003" level="3">
+    <if_sid>60103</if_sid>
+    <field name="win.system.eventID">^4769$</field>
+    <field name="win.eventdata.serviceName" type="pcre2" negate="yes">\$$|^krbtgt$</field>
+    <options>no_full_log</options>
+    <description>Ben - Kerberos Service Ticket was requested</description>
+  </rule>
+</group>
+```
+   
+Explanation: this rule matches off of Wazuh rule ID 60103, which is the generic Windows Audit Success event. It looks for event ID 4769, and uses the pcre2 library for regex which filters out machine accounts and the krbtgt account. Without excluding those, in an enterprise environment this would be unnecessarily noisy. The no_full_log option is used to reduce storage volume.  
 
-## Limitations
+3. Add this detection to /var/ossec/etc/rules/local_rules.xml:  
+
+```
+<group name="kerberos, windows, windows_security, authentication_success">
+  <rule id="100004" level="10" frequency="3" timeframe="5">
+    <if_matched_sid>100003</if_matched_sid>
+    <description>Ben - Multiple 4769 requests within 5 seconds from: $(win.eventdata.targetUserName)</description>
+    <different_field>win.eventdata.serviceName</different_field>
+    <same_field>win.eventdata.targetUserName</same_field>
+  </rule>
+</group>
+```    
+
+Explanation: this rule matches off of the custom rule I built above, which is just service ticket requests for non machine or krbtgt accounts. It looks for at least 3 requests under 5 seconds, which is indicative of an attacker attempting to perform kerberoasting by requesting a high volume of service tickets in a short time, to give them different hashes to try and crack. The rule also ensures that 4769 requests were coming from the same user and for different services, in order to prevent false positives.
+
+Now when I rerun the attack with impacket-GetUserSPNs -request, my alerts fire:  
+<img width="3402" height="1136" alt="image" src="https://github.com/user-attachments/assets/4de17ece-9417-4d5c-94cf-09c41a4268b8" />
+
+## Analyst Investigation  
+If an analyst were to see this alert (rule ID 100004, 100003 is not suspicious on its own), they should immediately investigate the user who requested the service tickets, and whether or not the activity aligns with their job role. For instance, someone from the HR department is unlikely to request service tickets at such a rate, whereas a cloud engineer might be. Logon attempts for the requesting user should be monitored to see if there were any successful logons via unusual IP addresses, indicating account compromise. Logon attempts for the service accounts should also be monitored in case the attacker successfully cracks their password hash.
+
+## False Positives  
+
+Potential false positives include authorized admins/tools enumerating services or high privileged users who have access to many services within an organization\
+
+## Limitations  
+The thresholds on this rule are tailored to my environment. In a more realistic enterprise environment, the thresholds would be adjusted to something more along the lines of 25 requests in 5 minutes for instance. A different method of detecting kerberoasting attacks is looking for 4769 event IDs where the user tries to request legacy encryption methods like RC4 which are easier to crack 
