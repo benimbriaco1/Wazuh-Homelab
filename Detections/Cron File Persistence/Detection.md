@@ -31,7 +31,12 @@ Now when I try to ssh from the kali linux VM into the target linux VM, it succee
 <img width="864" height="428" alt="image" src="https://github.com/user-attachments/assets/60043a02-9a8a-4bbe-9ac2-64aac540cb4e" />
 
 ## Detection  
-To detect this activity, I set up FIM
+To detect this activity, I first set edited the local Wazuh agent configuration in /var/ossec/etc/ossec.conf to configure file integrity monitoring (FIM) for the /var/spool/cron/crontabs/ directory via:  
+<img width="1270" height="228" alt="image" src="https://github.com/user-attachments/assets/35d32c79-0ee7-4434-b87a-45e1a8075914" />  
+
+And after that, alerts start to show in the Wazuh dahsboard
+<img width="2608" height="854" alt="image" src="https://github.com/user-attachments/assets/5bc3856f-b159-458f-b4bb-f01da663877d" />
+
 
 
 ## Analyst Investigation
