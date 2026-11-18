@@ -29,5 +29,5 @@ And I verified this success from the Windows server:
 <img width="1484" height="1032" alt="image" src="https://github.com/user-attachments/assets/86ef484e-dd99-4625-9c2a-0f421f370f5d" />
 
 ### 📋 Next Steps
-My next step is to deploy a linux virtual machine and finalize my infrastructure setp.
+My next step is to deploy a linux virtual machine 
 
