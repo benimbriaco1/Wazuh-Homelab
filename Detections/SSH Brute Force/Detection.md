@@ -2,7 +2,7 @@
 
 An SSH brute force attack is an attack where a threat actor attempts to gain unauthorized access to a system by repeatedly attempting to authenticate via SSH using different passwords. A large number of failed SSH attempts from a single source IP or within a short time frame can indicate a brute-force attack. If successful, this attack leaves the threat actor with valid credentials for the victim user
 
-## Attack scenario
+## Attack Scenario
  🔴 The attack: an outside attacker attempting an SSH Brute Force attack against a machine.
 
 This attack was simulated by having the Kali Linux VM attack the Ubuntu Desktop VM using [hydra](https://www.kali.org/tools/hydra/), a built in Kali Linux password cracking utility.
