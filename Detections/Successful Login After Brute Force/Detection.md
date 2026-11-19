@@ -1,9 +1,11 @@
-## Attack Scenario
+## Attack Description
 
-## Simulated Attack
+## Attack Scenario
 
 ## Detection
 
 ## Analyst Investigation
+
+## False Positives
 
 ## Limitations
