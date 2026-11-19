@@ -1,6 +1,6 @@
 ## Attack Description
 
-An SSH brute force attack is an attack where a threat actor attempts to gain unauthorized access to a system by repeatedly attempting to authenticate via SSH using different passwords. A large number of failed SSH attempts from a single source IP or within a short time frame can indicate a brute-force attack. If successful, this attack can grant the attacker remote access to a system which would likely be devastating.
+An SSH brute force attack is an attack where a threat actor attempts to gain unauthorized access to a system by repeatedly attempting to authenticate via SSH using different passwords. A large number of failed SSH attempts from a single source IP or within a short time frame can indicate a brute-force attack. If successful, this attack leaves the threat actor with valid credentials for the victim user
 
 ## Attack scenario
  🔴 The attack: an outside attacker attempting an SSH Brute Force attack against a machine.
