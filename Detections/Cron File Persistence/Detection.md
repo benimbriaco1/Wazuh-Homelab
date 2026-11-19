@@ -35,8 +35,9 @@ To detect this activity, I first set edited the local Wazuh agent configuration 
 <img width="1270" height="228" alt="image" src="https://github.com/user-attachments/assets/35d32c79-0ee7-4434-b87a-45e1a8075914" />  
 
 And after that, alerts start to show in the Wazuh dahsboard
-<img width="2608" height="854" alt="image" src="https://github.com/user-attachments/assets/5bc3856f-b159-458f-b4bb-f01da663877d" />
+<img width="3444" height="1600" alt="image" src="https://github.com/user-attachments/assets/41f43095-f16b-4f17-8f85-e9360655135e" />  
 
+From there, I can make a detection based on the addition of suspicious cron jobs to the /var/spool/cron/crontabs/<username> directory:
 
 
 ## Analyst Investigation
